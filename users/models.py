@@ -11,8 +11,9 @@ GENDER_SELECTION = [
 class CustomUser(AbstractUser):
     # We don't need to define the email attribute because is inherited from AbstractUser
     gender = models.CharField(max_length=20, choices=GENDER_SELECTION)
-    phone_number = models.CharField(max_length=30)
+    phone = models.CharField(max_length=30, blank=True, null=True)
     username = models.CharField(("Nome"), max_length=50, unique=False, primary_key=None)
+    email = models.EmailField("E-mail", unique=True)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'phone']
