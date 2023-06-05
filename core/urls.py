@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from users.API.views.GoogleLoginView import GoogleLoginView, GoogleOAuth2Adapter, UserRedirectView
+from users.API.views.GoogleLoginView import GoogleLoginView, UserRedirectView
 
 from drf_spectacular.views import (
     SpectacularAPIView, 
@@ -16,8 +16,10 @@ urlpatterns = [
     path('user/registration/', include('dj_rest_auth.registration.urls')),
 
     #dj rest auth | social authentication
-    path('user/google/', GoogleLoginView.as_view(), name='google_login'),
-
+    path('user/google/login', GoogleLoginView.as_view(), name='google_login'),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('accounts/', include('allauth.urls'), name='socialaccount_signup'),
+    path("~redirect/", view=UserRedirectView.as_view(), name="redirect"),
     #spectacular | docs
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),

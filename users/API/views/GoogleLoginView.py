@@ -10,3 +10,12 @@ class GoogleLoginView(SocialLoginView): # if you want to use Authorization Code 
     callback_url = 'http://127.0.0.1:8000/'
     client_class = OAuth2Client
 
+class UserRedirectView(LoginRequiredMixin, RedirectView):
+    """
+    This view is needed by the dj-rest-auth-library in order to work the google login. It's a bug.
+    """
+
+    permanent = False
+
+    def get_redirect_url(self):
+        return 'http://127.0.0.1:8000/'
