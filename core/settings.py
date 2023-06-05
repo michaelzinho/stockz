@@ -54,14 +54,17 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     #requests
-     'corsheaders',
+    'corsheaders',
 
     #myapps
-
+    'users',
 
     #docs
     'drf_spectacular',
 ]
+
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 SITE_ID = 1
 
@@ -106,6 +109,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_UNIQUE_USERNAME = False
 SOCIALACCOUNT_AUTO_SIGNUP = False
 
 #authentication google
