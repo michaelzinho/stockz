@@ -42,12 +42,19 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
-    #social autehntication   
+
+    #registration  
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+
+    #social registration
+    'allauth.socialaccount.providers.google',
+
+    #requests
+     'corsheaders',
 
     #myapps
 
@@ -66,6 +73,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #corsheaders
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -89,10 +101,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 #authentication
-""" EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'optional' """
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
 
 #cfg authentication
 REST_AUTH = {
@@ -163,3 +176,5 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
    
 }
+
+CORS_ORIGINS_ALLOW_ALL = True
