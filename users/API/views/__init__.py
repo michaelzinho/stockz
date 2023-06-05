@@ -1,1 +1,1 @@
-from .GoogleLoginView import GoogleLogin, GoogleOAuth2Adapter
+from .GoogleLoginView import GoogleLoginView, GoogleOAuth2Adapter
