@@ -17,9 +17,9 @@ from photos.api.viewset import PhotoViewSet, MultiplePhotosViewSet
 
 
 router = DefaultRouter()
-router.register(r'Album', AlbumViewSet, basename='Album')
-router.register(r'SinglePhoto', PhotoViewSet, basename='Photo')
-router.register(r'MultiplePhotos', MultiplePhotosViewSet, basename='Photos')
+router.register(r'album', AlbumViewSet, basename='Album')
+router.register(r'singlephoto', PhotoViewSet, basename='Photo')
+router.register(r'multiplephotos', MultiplePhotosViewSet, basename='Photos')
 
 
 
