@@ -11,12 +11,13 @@ class PhotoViewSet (viewsets.ModelViewSet):
     #permission_classes = [IsAuthenticated]
     queryset = Photo.objects.all()
     serializer_class = PhotoSerializers
+    http_method_names = ['get', 'post', 'put', 'delete','head']
     
 class MultiplePhotosViewSet (viewsets.ModelViewSet):
     #permission_classes = [IsAuthenticated]
     queryset = Photo.objects.all()
     serializer_class = MultipleImageSerializers
-    #http_method_names = ['get', 'post', 'put', 'delete','head']
+    http_method_names = ['get', 'post', 'put', 'delete','head']
     
     @action(detail=False, methods=["POST"]) 
     def multiple_uploads (self,  request, *args, **kwargs):
