@@ -1,0 +1,21 @@
+.header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 20px 10px 20px;
+    background-color: white;
+}
+.header h1,  .nav a
+{
+    font-size: 26px;
+    font-weight: 500;
+    color: #505050;
+}
+.nav
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}

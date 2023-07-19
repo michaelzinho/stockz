@@ -1,0 +1,37 @@
+.main
+{
+    display: flex;
+    gap: 40px;
+}
+.main_content
+{
+    width: 90%;
+    display: flex;
+    margin-top: 25px;
+    flex-direction: row;
+    align-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+
+@media (max-height: 532px)
+{
+    .main
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0px;
+    }
+    .main_content
+    {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-content: flex-start;
+        margin-left: 0px;
+
+    }
+        
+}

@@ -1,0 +1,12 @@
+.title p
+{
+    color: white;
+    font-weight: bold;
+}
+.data
+{
+    width: 238px;
+    height: 150px;
+    background-color: #505050;
+    border-radius: 5px;
+}

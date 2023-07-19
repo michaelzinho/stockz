@@ -1,0 +1,39 @@
+.main
+{
+    display: flex;
+    gap: 40px;
+}
+.main_content
+{
+    display: flex;
+    margin-top: 25px;
+    flex-direction: column;
+    margin-left: 150px;
+    gap: 50px;
+}
+.andamento_concluidos
+{
+    display: flex;
+    gap: 24px;
+    flex-direction: row;
+}
+
+@media (max-height: 532px)
+{
+    .main
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0px;
+    }
+    .main_content
+    {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-left: 0px;
+
+    }
+        
+}

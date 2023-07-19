@@ -1,0 +1,65 @@
+.head
+{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.color_white
+{
+    color: white;
+}
+.fontweight
+{
+    font-weight: 600;
+}
+.verification
+{
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 100%;
+}
+.drive_box
+{
+    max-width: 620px;
+    width: 500px;
+}
+.drive_icon
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+.main_box
+{
+    border: 1px solid #505050;
+}
+.bottom
+{
+    display: flex;
+}
+.info
+{
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+.inf
+{   
+    background-color: #505050;
+    border-radius: 0px 0px 5px 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.info p
+{
+    font-size: 20px;
+    color: white;
+}
+
+.image
+{
+    width: 500px;
+    height: 250px;
+    margin-top: 3px;
+    background-color: #ffffff;
+}

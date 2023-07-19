@@ -1,0 +1,11 @@
+.user_component
+{
+    display: flex;
+    align-items: center;
+    
+}
+.user_image
+{
+    border-radius: 5px;
+    box-shadow: 3px 3px #505050;
+}
