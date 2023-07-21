@@ -58,6 +58,11 @@ AUTH_USER_MODEL = 'users.CustomUser'
 SITE_ID = 1
 
 MIDDLEWARE = [
+    
+    #corsheaders
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,10 +70,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    #corsheaders
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 
 ]
 
@@ -93,7 +94,7 @@ REST_AUTH_SERIALIZERS = {
 #documentation
 SPECTACULAR_SETTINGS = {
     'TITLE': 'stockz',
-}
+}   
 
 ROOT_URLCONF = 'core.urls'
 
@@ -230,3 +231,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CORS_ORIGINS_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS: True

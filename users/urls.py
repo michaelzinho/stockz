@@ -10,5 +10,4 @@ urlpatterns = [
     path('accounts/', include('allauth.urls'), name='socialaccount_signup'),
     path("~redirect/", view=UserRedirectView.as_view(), name="redirect"),
     
-
 ]
