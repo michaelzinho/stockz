@@ -67,10 +67,10 @@ def get_file (name, folder_id):
     else:
         query = f"parents = '{folder_id}'"
         list = service.files().list(q=query).execute() 
-        print(list)
+        #print(list)
         
     for file in list['files']:
-            #print(file, 'get_file')
+            #print(file['name'],'searching for', name)
         
             if file['name'] == name:
                 
@@ -139,7 +139,7 @@ def create_folder (folder_name = str(), user_email = None):
         query = f"parents = '{id}'"
 
         list = service.files().list(q=query).execute() 
-        print(list, '<<<<<<<<<<<<')
+        #print(list, '<<<<<<<<<<<<')
         for file in list['files']:
             print()
             if file['name'] == folder_name:
@@ -233,3 +233,17 @@ def delete_folder (owner_name, album_title):
     delete = f"fileId : '{id}'"
     
     list = service.files().delete(fileId=id).execute()
+    
+def change_file_name (owner, file_name, new_name):
+    
+    
+    name, id = get_file(owner, -1)
+    print(id, '<<<<<<')
+    name, id = get_file(file_name, id)
+    
+    body = {'name': new_name}
+    
+    change_file_name = service.files().update(fileId=id,
+                                              body=body).execute()
+    
+    return print(f' >>>>>>>>>>> o nome da pasta >{file_name}< foi alterada para >{new_name} <<<<<<<<<<<<< ')

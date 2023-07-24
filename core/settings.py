@@ -50,6 +50,9 @@ INSTALLED_APPS = [
 
     #docs
     'drf_spectacular',
+
+    #history
+    'simple_history'
 ]
 
 
@@ -70,6 +73,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    #history
+    'simple_history.middleware.HistoryRequestMiddleware',
 
 ]
 

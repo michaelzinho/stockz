@@ -20,7 +20,7 @@ class AlbumViewSet (viewsets.ModelViewSet):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializers
     http_method_names = ['get', 'post', 'put', 'delete','head']
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def list(self, request, *args, **kwargs):
         
@@ -29,8 +29,36 @@ class AlbumViewSet (viewsets.ModelViewSet):
             return Response('no user')
         
         user_albuns = Album.objects.filter(Q(owner = request.user.id) | Q(shared_with = request.user.id))
+        print(Album.history.all())
+        for obj in Album.history.all():
+            print(obj, '<<<<')
         serializer = AlbumSerializers(user_albuns, many=True)
         #print(serializer.data, request.user.id, '<<<')
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', True)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        
+        new_data = request.data
+        old_data = instance 
+        print(new_data['title'], old_data)
+        if new_data['title']:
+            if new_data['title'] != old_data.title:
+                
+                print('seaching for', old_data.title)
+                drive.change_file_name(str(old_data.owner.email), old_data.title, new_data['title'])
+                
+        
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
         return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
@@ -47,13 +75,12 @@ class AlbumViewSet (viewsets.ModelViewSet):
         
         print(request.POST, '<asd\n', request.data,' <asd\n', request)
         
-
-            
+       
         
         nem_album = Album.objects.create(title = album_request_data['title'],
                                          discription = album_request_data['discription'],
                                          owner=owner_data,
-                                         #shared = 'user_list'
+                                         #'shared_with = user_list'
                                          )
         
         drive.create_folder(album_request_data['title'], request.user.email)
@@ -67,7 +94,7 @@ class AlbumViewSet (viewsets.ModelViewSet):
         if album_request_data['cover']:
             
             cover = request.FILES.getlist('cover') 
-            #print(cover)
+            print(cover)
             #input('wait')
         
             img = Photo.objects.create(title = str(cover[0]).replace(" ","_").replace("(","").replace(")","").replace("#","").replace("'","").replace("\"","").replace("+","").replace("!",""),
@@ -90,8 +117,6 @@ class AlbumViewSet (viewsets.ModelViewSet):
             nem_album.cover = img
             nem_album.save()
             
-            
-        
         for img in image:
 
             img = Photo.objects.create(title = str(img).replace(" ","_").replace("(","").replace(")","").replace("#","").replace("'","").replace("\"","").replace("+","").replace("!",""),
@@ -112,8 +137,20 @@ class AlbumViewSet (viewsets.ModelViewSet):
             print(str(img.title), "drive_id=", id)
             img.save()
 
-         
-             
+        try:
+            user_list = album_request_data['shared_with']
+        except:
+            user_list = []
+            
+        for user in user_list:
+            try:
+                add_user = User.objects.get(id=user.id)
+            except:
+                add_user = User.objects.get(id=user)
+                
+            nem_album.shared_with.add(add_user)
+            
+        nem_album.save()
         drive.change_permission(created_folder_id) 
         
         for filename in os.listdir('media'):
@@ -127,7 +164,6 @@ class AlbumViewSet (viewsets.ModelViewSet):
          
     def destroy(self, request, pk=None ,*args, **kwargs):
         
-        print("delete entrou")
         user  = request.user
         folder = instance = self.get_object().title
         

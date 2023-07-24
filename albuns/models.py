@@ -2,7 +2,12 @@ from os import path
 from django.db import models
 from photos.models import Photo
 from core import settings
+from simple_history.models import HistoricalRecords
+from simple_history import register
 
+from django.contrib.auth import get_user_model
+User = get_user_model()
+register(User)
 # Create your models here.
 
 class Album (models.Model):
@@ -16,7 +21,9 @@ class Album (models.Model):
     photos = models.ManyToManyField(Photo, verbose_name=("Fotos"), blank=True, null=True)
     last_modified = models.DateTimeField(("Ultima alteração"), auto_now=True)  
     delete_on_reset_day = models.BooleanField(("Deletar no dia de exclusão"), default=False)
-
+    history = HistoricalRecords()
+    
+    
     verbose_name = 'Album'
     verbose_name_plural = 'Albuns'
 
