@@ -13,8 +13,8 @@ class Album (models.Model):
     shared_with = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=("Compartilhado com"), related_name="album_shared_with")
     create_date = models.DateTimeField(("Data de criação"), auto_now_add=True) 
     cover = models.ForeignKey(Photo, related_name='Cover_album', on_delete=models.SET_NULL, blank=True, null=True)
-    photos = models.ManyToManyField(Photo, verbose_name=("Fotos"))
-    last_modified = models.DateTimeField(("Ultima alteração"), auto_now=True) 
+    photos = models.ManyToManyField(Photo, verbose_name=("Fotos"), blank=True, null=True)
+    last_modified = models.DateTimeField(("Ultima alteração"), auto_now=True)  
     delete_on_reset_day = models.BooleanField(("Deletar no dia de exclusão"), default=False)
 
     verbose_name = 'Album'

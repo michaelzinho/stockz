@@ -4,8 +4,8 @@ from photos.api.serializers import PhotoSerializers
 
 class AlbumSerializers (serializers.ModelSerializer):
 
-    #cover = PhotoSerializers(many=True)
-    #photos = PhotoSerializers(many=True)
+    cover = PhotoSerializers()
+    photos = PhotoSerializers(many=True)
     class Meta:
 
         model = Album

@@ -12,7 +12,7 @@ SECRET_KEY = 'django-insecure-$i3xbh#=5da@wknuyjd)_cbs9u6qnv$%+sf1smmu6&jgt_nztl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -28,13 +28,13 @@ INSTALLED_APPS = [
     #authentication
     'rest_framework',
     'rest_framework.authtoken',
-    'dj_rest_auth',
 
     #registration  
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'dj_rest_auth',
     'dj_rest_auth.registration',
 
     #social registration
@@ -232,3 +232,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGINS_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS: True
+
+file_pa_crlkkkkkkkkkkkkkkkkk = 12321312321312321322
+DATA_UPLOAD_MAX_NUMBER_FILES = file_pa_crlkkkkkkkkkkkkkkkkk

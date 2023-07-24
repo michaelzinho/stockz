@@ -13,13 +13,12 @@ from drf_spectacular.views import (
 )
 
 from albuns.api.viewset import AlbumViewSet
-from photos.api.viewset import PhotoViewSet, MultiplePhotosViewSet
+from photos.api.viewset import PhotoViewSet
 
 
 router = DefaultRouter()
 router.register(r'album', AlbumViewSet, basename='Album')
-router.register(r'singlephoto', PhotoViewSet, basename='Photo')
-router.register(r'multiplephotos', MultiplePhotosViewSet, basename='Photos')
+router.register(r'photo', PhotoViewSet, basename='Photo')
 
 
 
